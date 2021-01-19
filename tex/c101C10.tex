@@ -1,0 +1,37 @@
+\documentclass[crop,tikz]{standalone}
+\begin{document}
+\begin{tikzpicture}[thick, scale=1, every node/.style={scale=0.3}]
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v0) at (4.301075268817204,5.376344086021505) {\footnotesize 0};
+	\node[draw, line width=0.1mm, circle, fill=black, inner sep=0.05cm, text=white] (v1) at (4.301075268817204,5.376344086021505) {\footnotesize 1};
+	\node[draw, line width=0.1mm, circle, fill=black, inner sep=0.05cm, text=white] (v2) at (8.279569892473118,5.591397849462365) {\footnotesize 2};
+	\node[draw, line width=0.1mm, circle, fill=black, inner sep=0.05cm, text=white] (v3) at (6.129032258064515,8.817204301075268) {\footnotesize 3};
+	\node[draw, line width=0.1mm, circle, fill=black, inner sep=0.05cm, text=white] (v4) at (5.161290322580644,0.8602150537634408) {\footnotesize 4};
+	\node[draw, line width=0.1mm, circle, fill=black, inner sep=0.05cm, text=white] (v5) at (9.999999999999998,4.623655913978494) {\footnotesize 5};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v6) at (6.236559139784945,8.064516129032258) {\footnotesize 6};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v7) at (9.462365591397848,3.7634408602150535) {\footnotesize 7};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v8) at (4.516129032258064,7.311827956989246) {\footnotesize 8};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v9) at (2.365591397849462,8.064516129032258) {\footnotesize 9};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v10) at (6.666666666666666,8.602150537634408) {\footnotesize 10};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v11) at (5.913978494623655,9.139784946236558) {\footnotesize 11};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v12) at (4.516129032258064,1.075268817204301) {\footnotesize 12};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v13) at (2.473118279569892,5.591397849462365) {\footnotesize 13};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v14) at (6.774193548387096,6.236559139784945) {\footnotesize 14};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v15) at (6.451612903225806,8.602150537634408) {\footnotesize 15};
+	\draw[-,line width=0.8pt] (v0) -- (v0);
+	\draw[-,line width=0.8pt] (v0) -- (v13);
+	\draw[-,line width=0.8pt] (v13) -- (v12);
+	\draw[-,line width=0.8pt] (v12) -- (v4);
+	\draw[-,line width=0.8pt] (v4) -- (v7);
+	\draw[-,line width=0.8pt] (v7) -- (v2);
+	\draw[-,line width=0.8pt] (v2) -- (v14);
+	\draw[-,line width=0.8pt] (v14) -- (v6);
+	\draw[-,line width=0.8pt] (v6) -- (v10);
+	\draw[-,line width=0.8pt] (v10) -- (v15);
+	\draw[-,line width=0.8pt] (v15) -- (v3);
+	\draw[-,line width=0.8pt] (v3) -- (v11);
+	\draw[-,line width=0.8pt] (v11) -- (v8);
+	\draw[-,line width=0.8pt] (v8) -- (v9);
+	\draw[-,line width=0.8pt] (v9) -- (v0);
+	\draw[-,line width=0.8pt] (v0) -- (v0);
+\end{tikzpicture}
+\end{document}

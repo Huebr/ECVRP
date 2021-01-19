@@ -1,0 +1,96 @@
+Application parameters:
+  batch  =>  nothing
+  instance  =>  "/IN/burma14.tsp"
+  noround  =>  false
+  cfg  =>  "/BWTSP/src/../config/BWTSP.cfg"
+  nblack  =>  4
+  out  =>  "/OUT/burma14_B_4_Q_3.sol"
+  ub  =>  3704.0
+  sol  =>  nothing
+  maxwhite  =>  3
+  tikz  =>  "/TIKZ/burma14_B_4_Q_3.tex"
+  nosolve  =>  false
+  maxdist  =>  1.0e7
+[41m solve [00m
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+VRPSolver v0.4,  1/09/2020. Web: vrpsolver.math.u-bordeaux.fr
+Corresponds to the solver by Pessoa, Sadykov, Uchoa and Vanderbeck (2020)
+Paper: dx.doi.org/10.1007/s10107-020-01523-z
+USE THIS CODE ONLY FOR ACADEMIC PURPOSES AT YOUR OWN RISK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+BaPCod v050b,  1/09/2020, © Inria Bordeaux, France (license expires 1/12/2021)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+VRPSolver parameters:
+GlobalTimeLimit = 21474836
+MaxNbOfBBtreeNodeTreated = 100000
+treeSearchStrategy = 1
+RCSPstopCutGenTimeThresholdInPricing = 10
+RCSPhardTimeThresholdInPricing = 25
+RCSPnumberOfBucketsPerVertex = 25
+RCSPdynamicBucketSteps = 1
+RCSPuseBidirectionalSearch = 1
+RCSPapplyReducedCostFixing = 1
+RCSPredCostFixingFalseGap = 0
+RCSPmaxNumOfColsPerIteration = 30
+RCSPmaxNumOfColsPerExactIteration = 150
+RCSPheurLabelingStrategy = 0
+StabilizationMinPhaseOfStage = 0
+RCSPmaxNumOfLabelsInEnumeration = 500000
+RCSPmaxNumOfEnumeratedSolutions = 5000000
+RCSPmaxNumOfEnumSolutionsForMIP = 0
+RCSPinitNGneighbourhoodSize = 8
+RCSPmaxNGneighbourhoodSize = 8
+RCSPrankOneCutsMaxNumPerRound = 100
+RCSPrankOneCutsMaxNumRows = 5
+RCSPrankOneCutsMemoryType = 1
+CutTailingOffThreshold = 0.015
+CutTailingOffCounterThreshold = 3
+SafeDualBoundScaleFactor = -1
+StrongBranchingPhaseOneCandidatesNumber = 100
+StrongBranchingPhaseOneTreeSizeEstimRatio = 0.2
+StrongBranchingPhaseTwoCandidatesNumber = 5
+StrongBranchingPhaseTwoTreeSizeEstimRatio = 0.02
+MaxTimeForRestrictedMasterIpHeur = -1
+DivingHeurUseDepthLimit = -1
+MaxLDSbreadth = 0
+MaxLDSdepth = 0
+New model incumbent solution 3704, TIME = 0h0m0s25t = 25
+RCSP solver info : symmetric case is detected for graph G_1! 
+Model is built TIME = 0h0m1s59t = 159
+************************************************************************************************
+**** BaB tree root node
+**** Local DB = -1e+12, global bounds : [ -1e+12 , 3704 ], TIME = 0h0m1s59t = 159
+**** 1 open nodes, 0 columns (0 active), 0 dyn. constrs. (0 active), 30 art. vars. (30 active)
+************************************************************************************************
+<DWph=2> <it= 10> <et=1.69> <Mt= 0.05> <Spt= 0.02> <nCl=270> <DB=  249.1723> <Mlp= 4366.6364> <PB=3704> 
+>>>>> Add min cuts : 1 cut(s) added
+----- Add core cuts : UserCuts0(1), max.viol = 2, aver.viol = 2, sep/add took 1.06/0 sec. -----
+<DWph=2> <it= 16> <et=2.76> <Mt= 0.01> <Spt= 0.01> <nCl= 70> <DB= 3668.8333> <Mlp= 3668.8333> <PB=3704> 
+<DWph=1> <it= 17> <et=2.76> <Mt= 0.00> <Spt= 0.00> <nCl=  0> <DB= 3668.8333> <Mlp= 3668.8333> <PB=3704> 
+<DWph=0> <it= 19> <et=2.76> <Mt= 0.00> <Spt= 0.00> <nCl=  4> <DB= 3641.8333> <Mlp= 3641.8333> <PB=3704> 
+Reduced cost fixing for graph G_1... took 0 sec., 1036 buck. arcs remain (38.2% from prev., 23.2% from max.)
+Run enumeration... took 0.02 sec. and succeeded! Pricing will be done by inspection.
+<DWph=2> <it= 20> <et=2.80> <Mt= 0.00> <Spt= 0.00> <nCl=  0> <DB= 3677.5000> <Mlp= 3677.5000> <PB=3704> 
+<DWph=1> <it= 21> <et=2.80> <Mt= 0.00> <Spt= 0.00> <nCl=  0> <DB= 3677.5000> <Mlp= 3677.5000> <PB=3704> 
+<DWph=0> <it= 23> <et=2.80> <Mt= 0.00> <Spt= 0.00> <nCl=  2> <DB= 3677.5000> <Mlp= 3677.5000> <PB=3704> 
+Reduced cost fixing for graph G_1...  took 0 sec., done by inspection with 48 solutions, remains 18 (37.5%)
+ColGenEvalAlg final dual bound: 3677.5 (rounded: 3678)
+>>>>> Add min cuts : 1 cut(s) added
+----- Add fac. cuts : CAP(1) UserCuts0(1), max.viol = 1, aver.viol = 0.75, sep/add took 0/0 sec. -----
+34 columns (34 active), 3 dyn. constrs. (3 active), 35 art. vars. (35 active)
+<DWph=2> <it=  1> <et=2.80> <Mt= 0.00> <Spt= 0.00> <nCl=  0> <DB= 3703.0000> <Mlp= 3703.0000> <PB=3703> 
+<DWph=1> <it=  2> <et=2.80> <Mt= 0.00> <Spt= 0.00> <nCl=  0> <DB= 3703.0000> <Mlp= 3703.0000> <PB=3703> 
+<DWph=0> <it=  3> <et=2.80> <Mt= 0.00> <Spt= 0.00> <nCl=  0> <DB= 3703.0000> <Mlp= 3703.0000> <PB=3703> 
+ColGenEvalAlg final dual bound: 3703 (rounded: 3703)
+Gap improvement since the last cut separation : 1 (3677.5)
+New model incumbent solution 3703, TIME = 0h0m2s80t = 280
+************************************************************************************************
+Search is finished, global bounds : [ 3703 , 3703 ], TIME = 0h0m2s80t = 280
+************************************************************************************************
+[32mBaPCod : solution defined.[00m
+statistics_cols: instance & :Optimal & cutoff & :bcRecRootDb & :bcTimeRootEval & :bcCountNodeProc & :bcRecBestDb & :bcRecBestInc & :bcTimeMain \\
+statistics: burma14_B_4_Q_3 & 1 & 3704.0 & 3703.00 & 2.80 & 1 & 3703.00 & 3703 & 2.80 \\
+########################################################
+Route #1: 1 8 13 7 4 5 6 12 3 14 2 10 9 11 
+Cost 3703
+########################################################

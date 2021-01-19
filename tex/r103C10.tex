@@ -1,0 +1,35 @@
+\documentclass[crop,tikz]{standalone}
+\begin{document}
+\begin{tikzpicture}[thick, scale=1, every node/.style={scale=0.3}]
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v0) at (6.363636363636364,6.363636363636364) {\footnotesize 0};
+	\node[draw, line width=0.1mm, circle, fill=black, inner sep=0.05cm, text=white] (v1) at (6.363636363636364,6.363636363636364) {\footnotesize 1};
+	\node[draw, line width=0.1mm, circle, fill=black, inner sep=0.05cm, text=white] (v2) at (2.7272727272727275,7.636363636363637) {\footnotesize 2};
+	\node[draw, line width=0.1mm, circle, fill=black, inner sep=0.05cm, text=white] (v3) at (3.8181818181818183,4.0) {\footnotesize 3};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v4) at (2.7272727272727275,3.4545454545454546) {\footnotesize 4};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v5) at (2.0,5.636363636363637) {\footnotesize 5};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v6) at (6.7272727272727275,5.636363636363637) {\footnotesize 6};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v7) at (3.6363636363636367,7.272727272727273) {\footnotesize 7};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v8) at (6.363636363636364,7.272727272727273) {\footnotesize 8};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v9) at (10.0,9.818181818181818) {\footnotesize 9};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v10) at (2.5454545454545454,6.7272727272727275) {\footnotesize 10};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v11) at (1.0909090909090908,6.909090909090909) {\footnotesize 11};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v12) at (8.181818181818182,5.454545454545455) {\footnotesize 12};
+	\node[draw, line width=0.1mm, circle, fill=white, inner sep=0.05cm] (v13) at (1.8181818181818183,3.6363636363636367) {\footnotesize 13};
+	\draw[-,line width=0.8pt] (v0) -- (v0);
+	\draw[-,line width=0.8pt] (v0) -- (v12);
+	\draw[-,line width=0.8pt] (v12) -- (v6);
+	\draw[-,line width=0.8pt] (v6) -- (v3);
+	\draw[-,line width=0.8pt] (v3) -- (v4);
+	\draw[-,line width=0.8pt] (v4) -- (v13);
+	\draw[-,line width=0.8pt] (v13) -- (v5);
+	\draw[-,line width=0.8pt] (v5) -- (v11);
+	\draw[-,line width=0.8pt] (v11) -- (v10);
+	\draw[-,line width=0.8pt] (v10) -- (v2);
+	\draw[-,line width=0.8pt] (v2) -- (v7);
+	\draw[-,line width=0.8pt] (v7) -- (v1);
+	\draw[-,line width=0.8pt] (v1) -- (v8);
+	\draw[-,line width=0.8pt] (v8) -- (v9);
+	\draw[-,line width=0.8pt] (v9) -- (v0);
+	\draw[-,line width=0.8pt] (v0) -- (v0);
+\end{tikzpicture}
+\end{document}
