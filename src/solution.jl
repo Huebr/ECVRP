@@ -11,6 +11,7 @@ function getsolution(data::DataECVRP, optimizer::VrpOptimizer, x, objval, app::D
     R′ = vcat([0],R)
     A = [(i,j) for i in V for j in V if !((i in  R′) & (j in  R′)) & (i!=j)]
     adj_list = [[] for i in 1:dim] 
+    println("Number of vehicles $(get_number_of_positive_paths(optimizer))")
     #println("---------------x values-----------------------------")
     for a in A
        val = get_value(optimizer, x[a])
@@ -88,11 +89,13 @@ function checksolution(data::DataECVRP, solution)
     R′ = vcat([0],R) 
     for (i, r) in enumerate(solution.routes)
         sum_demand, battery_level, prev = 0, E_max, r[1]
+        #cummulative =0.0
         for j in r[2:end]
             visits[j+1] += 1
             (visits[j+1] > 1& j in C) && error("Customer $j was visited more than once")
             sum_cost += c(data, ed(prev, j))
-     #       println("x[$((prev,j))]")
+            #cummulative = (prev in R′) ?  ec(data,ed(j,prev)) : cummulative + ec(data,ed(j,prev))
+            #println("$(cummulative) -> $(j)->")
             battery_level= (prev in R′) ? E_max - ec(data,ed(j,prev)) : battery_level - ec(data,ed(prev,j))
       #      println("$(battery_level)")
             (battery_level < E_min) && error("Route is violating the limit of energy. The battery level is not bounded $(battery_level) in [$E_min,$E_max]")

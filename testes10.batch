@@ -1,13 +1,13 @@
-ECVRP/data/evrptw_instances/c101C10.txt -C 10 -R 5 -M 1.0 -r -o ECVRP/out/c101C10.sol -t ECVRP/tex/c101C10.tex
-ECVRP/data/evrptw_instances/c104C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/c104C10.sol -t ECVRP/tex/c104C10.tex
-ECVRP/data/evrptw_instances/c202C10.txt -C 10 -R 5 -M 1.0 -r -o ECVRP/out/c202C10.sol -t ECVRP/tex/c202C10.tex
-ECVRP/data/evrptw_instances/c205C10.txt -C 10 -R 3 -M 1.0 -r -o ECVRP/out/c205C10.sol -t ECVRP/tex/c205C10.tex
-ECVRP/data/evrptw_instances/r102C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/r102C10.sol -t ECVRP/tex/r202C10.tex
-ECVRP/data/evrptw_instances/r103C10.txt -C 10 -R 3 -M 1.0 -r -o ECVRP/out/r103C10.sol -t ECVRP/tex/r103C10.tex
-ECVRP/data/evrptw_instances/r201C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/r201C10.sol -t ECVRP/tex/r201C10.tex
-ECVRP/data/evrptw_instances/r203C10.txt -C 10 -R 5 -M 1.0 -r -o ECVRP/out/r203C10.sol -t ECVRP/tex/r203C10.tex
-ECVRP/data/evrptw_instances/rc102C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/rc102C10.sol -t ECVRP/tex/rc102C10.tex
-ECVRP/data/evrptw_instances/rc108C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/rc108C10.sol -t ECVRP/tex/rc108C10.tex
-ECVRP/data/evrptw_instances/rc201C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/rc201C10.sol -t ECVRP/tex/rc201C10.tex
-ECVRP/data/evrptw_instances/rc205C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/rc205C10.sol -t ECVRP/tex/rc205C10.tex
+ECVRP/data/ecvrp_instances/10customers/c101C10.txt -C 10 -R 5 -M 1.0 -r -o ECVRP/out/c101C10.sol -t ECVRP/tex/c101C10.tex
+ECVRP/data/ecvrp_instances/10customers/c104C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/c104C10.sol -t ECVRP/tex/c104C10.tex
+ECVRP/data/ecvrp_instances/10customers/c202C10.txt -C 10 -R 5 -M 1.0 -r -o ECVRP/out/c202C10.sol -t ECVRP/tex/c202C10.tex
+ECVRP/data/ecvrp_instances/10customers/c205C10.txt -C 10 -R 3 -M 1.0 -r -o ECVRP/out/c205C10.sol -t ECVRP/tex/c205C10.tex
+ECVRP/data/ecvrp_instances/10customers/r102C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/r102C10.sol -t ECVRP/tex/r202C10.tex
+ECVRP/data/ecvrp_instances/10customers/r103C10.txt -C 10 -R 3 -M 1.0 -r -o ECVRP/out/r103C10.sol -t ECVRP/tex/r103C10.tex
+ECVRP/data/ecvrp_instances/10customers/r201C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/r201C10.sol -t ECVRP/tex/r201C10.tex
+ECVRP/data/ecvrp_instances/10customers/r203C10.txt -C 10 -R 5 -M 1.0 -r -o ECVRP/out/r203C10.sol -t ECVRP/tex/r203C10.tex
+ECVRP/data/ecvrp_instances/10customers/rc102C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/rc102C10.sol -t ECVRP/tex/rc102C10.tex
+ECVRP/data/ecvrp_instances/10customers/rc108C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/rc108C10.sol -t ECVRP/tex/rc108C10.tex
+ECVRP/data/ecvrp_instances/10customers/rc201C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/rc201C10.sol -t ECVRP/tex/rc201C10.tex
+ECVRP/data/ecvrp_instances/10customers/rc205C10.txt -C 10 -R 4 -M 1.0 -r -o ECVRP/out/rc205C10.sol -t ECVRP/tex/rc205C10.tex
 

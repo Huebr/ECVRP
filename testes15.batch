@@ -1,0 +1,12 @@
+ECVRP/data/ecvrp_instances/15customers/c103C15.txt -C 15 -R 5 -M 1.0 -r -o ECVRP/out/c103C15.sol -t ECVRP/tex/c103C15.tex
+ECVRP/data/ecvrp_instances/15customers/c106C15.txt -C 15 -R 3 -M 1.0 -r -o ECVRP/out/c106C15.sol -t ECVRP/tex/c106C15.tex
+ECVRP/data/ecvrp_instances/15customers/c202C15.txt -C 15 -R 5 -M 1.0 -r -o ECVRP/out/c202C15.sol -t ECVRP/tex/c202C15.tex
+ECVRP/data/ecvrp_instances/15customers/c208C15.txt -C 15 -R 4 -M 1.0 -r -o ECVRP/out/c208C15.sol -t ECVRP/tex/c208C15.tex
+ECVRP/data/ecvrp_instances/15customers/r102C15.txt -C 15 -R 8 -M 1.0 -r -o ECVRP/out/r102C15.sol -t ECVRP/tex/r102C15.tex
+ECVRP/data/ecvrp_instances/15customers/r105C15.txt -C 15 -R 6 -M 1.0 -r -o ECVRP/out/r105C15.sol -t ECVRP/tex/r105C15.tex
+ECVRP/data/ecvrp_instances/15customers/r202C15.txt -C 15 -R 6 -M 1.0 -r -o ECVRP/out/r202C15.sol -t ECVRP/tex/r202C15.tex
+ECVRP/data/ecvrp_instances/15customers/r209C15.txt -C 15 -R 5 -M 1.0 -r -o ECVRP/out/r209C15.sol -t ECVRP/tex/r209C15.tex
+ECVRP/data/ecvrp_instances/15customers/rc103C15.txt -C 15 -R 5 -M 1.0 -r -o ECVRP/out/rc103C15.sol -t ECVRP/tex/rc103C15.tex
+ECVRP/data/ecvrp_instances/15customers/rc108C15.txt -C 15 -R 5 -M 1.0 -r -o ECVRP/out/rc108C15.sol -t ECVRP/tex/rc108C15.tex
+ECVRP/data/ecvrp_instances/15customers/rc202C15.txt -C 15 -R 5 -M 1.0 -r -o ECVRP/out/rc202C15.sol -t ECVRP/tex/rc202C15.tex
+ECVRP/data/ecvrp_instances/15customers/rc204C15.txt -C 15 -R 7 -M 1.0 -r -o ECVRP/out/rc204C15.sol -t ECVRP/tex/rc204C15.tex

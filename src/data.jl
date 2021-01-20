@@ -124,7 +124,7 @@ c(data,e) = data.G′.cost[e] # cost of the edge e
 ec(data,e) = data.G′.energy_cost[e]
 d(data,e) = (e[1] != e[2]) ? data.G′.cost[e] : 0.0 # cost of the edge e
 d(data::DataECVRP,i::Int64) = (i in data.Clients) ? data.G′.V′[i+1].demand : 0.0
-#olhar começo tutorial porque é necessario as duas funções e não só uma
+
 dimension(data::DataECVRP) = length(data.G′.V′) # return number of vertices
 nb_vertices(data::DataECVRP) = length(vertices(data))
 
