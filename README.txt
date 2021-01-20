@@ -1,3 +1,4 @@
+#need fixing
 # The ECVRP application can be executed by invoking the docker directly:
 docker run --rm -v /ABSOLUTE_PATH_TO_ECVRP_APP:/ECVRP bapdock /ECVRP/src/run.jl /ECVRP/data/T/burma14.tsp -B 4 -Q 3 -u 3704
 

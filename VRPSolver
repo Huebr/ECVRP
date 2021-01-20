@@ -3,21 +3,21 @@
 # This script works if your can manage Docker as a non-root user (whitout sudo)
 # See the instruction at https://docs.docker.com/install/linux/linux-postinstall/
 
-BWTSP_APP_ABSOLUTE_PATH=$(echo "$(pwd)" | sed 's/ /\\ /g')
+ECVRP_APP_ABSOLUTE_PATH=$(echo "$(pwd)" | sed 's/ /\\ /g')
 
 if [ "$1" == '--help' ] || [ "$1" == '-h' ]  || [ "$1" == '' ]; then 
-   eval "docker run --rm -v ${BWTSP_APP_ABSOLUTE_PATH}:/BWTSP bapdock /BWTSP/src/run.jl --help"
+   eval "docker run --rm -v ${ECVRP_APP_ABSOLUTE_PATH}:/ECVRP bapdock /ECVRP/src/run.jl --help"
    exit 1
 fi
 
 if [ "$1" == '-it' ]; then 
-   eval "docker run -it --rm -v ${BWTSP_APP_ABSOLUTE_PATH}:/BWTSP bapdock"
+   eval "docker run -it --rm -v ${ECVRP_APP_ABSOLUTE_PATH}:/ECVRP bapdock"
    exit 1
 fi
 
 ARGS=("$@")
 
-TO_MOUNT=( "$BWTSP_APP_ABSOLUTE_PATH:/BWTSP" ) # directories to mount into the container
+TO_MOUNT=( "$ECVRP_APP_ABSOLUTE_PATH:/ECVRP" ) # directories to mount into the container
 STR_ARGS=()
 
 check_mount() {
@@ -68,7 +68,7 @@ else # batch execution
 
          new_line=""
 
-         in_path="/BWTSP/" # convert instance path
+         in_path="/ECVRP/" # convert instance path
          j=0
          for i in "${linearray[@]}"; do
             in_path="${in_path} $i"
@@ -77,17 +77,17 @@ else # batch execution
                break
             fi
          done
-         new_line+="$(echo $in_path | sed 's/\/BWTSP\/ /\/BWTSP\//g') " 
+         new_line+="$(echo $in_path | sed 's/\/ECVRP\/ /\/ECVRP\//g') " 
 
          for i in "${linearray[@]:$j}"; do
             if [ $i == "--sol" ] || [ $i == "-s" ] ; then
-               new_line+=" $i /BWTSP/"
+               new_line+=" $i /ECVRP/"
             elif [ $i == "--out" ] || [ $i == "-o" ] ; then
-               new_line+=" $i /BWTSP/"
+               new_line+=" $i /ECVRP/"
             elif [ $i == "--tikz" ] || [ $i == "-t" ] ; then
-               new_line+=" $i /BWTSP/"
+               new_line+=" $i /ECVRP/"
             elif [ $i == "--cfg" ] || [ $i == "-c" ] ; then
-               new_line+=" $i /BWTSP/"
+               new_line+=" $i /ECVRP/"
             else
                new_line+="$i "
             fi
@@ -102,7 +102,7 @@ STR_CALL="docker run --rm "
 for((i=0; i < ${#TO_MOUNT[@]}; i++)); do
    STR_CALL="$STR_CALL -v ${TO_MOUNT[$i]}"
 done
-STR_CALL="$STR_CALL bapdock /BWTSP/src/run.jl"
+STR_CALL="$STR_CALL bapdock /ECVRP/src/run.jl"
 for((i=0; i < ${#STR_ARGS[@]}; i++)); do
    STR_CALL="$STR_CALL ${STR_ARGS[$i]}"
 done

@@ -1,6 +1,12 @@
 include("ECVRP/src/run.jl")
 args = ["\ECVRP\data\ecvrp_instances\10customers\5RS\c101C10.txt", "-C", "10", "-R", "5","-M","1.0","-r", "-t", "ECVRP/tex/c101C10.tex"]
-args = ["ECVRP\data\ecvrp_instances\10customers\4RS\r201C10.txt", "-C", "10", "-R", "4","-M","1.0","-r", "-t", "ECVRP/tex/r201C10.ex"]
-args = ["ECVRP\data\ecvrp_instances\20customers/rc103C20.txt", "-C", "20", "-R", "21","-M","1.0","-r", "-t", "ECVRP/tex/rc103C20.ex"]
+args = ["ECVRP\data\ecvrp_instances\10customers\4RS\r201C10.txt", "-C", "10", "-R", "4","-M","1.0","-r", "-t", "ECVRP/tex/r201C10.tex"]
+args = ["ECVRP/data/ecvrp_instances/20customers/rc103C20.txt", "-C", "20", "-R", "21","-M","1.0","-r", "-t", "ECVRP/tex/rc103C20.tex"]
+
+#problematic cutoff
+include("ECVRP/src/run.jl")
+args = ["ECVRP/data/ecvrp_instances/20customers/rc202C20.txt", "-C", "20", "-R", "21","-M","1.0","-r","-u","325", "-t", "ECVRP/tex/rc202C20.tex"]
+#the dual without cutoff ignores optimum
+args = ["ECVRP/data/ecvrp_instances/20customers/rc202C20.txt", "-C", "20", "-R", "21","-M","1.0","-r","-u","325", "-t", "ECVRP/tex/rc202C20.tex"]
 
 main(args)

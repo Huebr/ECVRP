@@ -28,9 +28,9 @@ function build_model(data::DataECVRP)
 
     @objective(ecvrp.formulation, Min, sum(c(data, ed(e[1],e[2])) * x[e] for e in Ec))
     @constraint(ecvrp.formulation, cons2[j in C], sum(x[(i,j)] for i in V if i != j) == 1.0)
-    @constraint(ecvrp.formulation, cons3[j in C], sum(x[(j,i)] for i in V if i!=j) == 1.0)
-    @constraint(ecvrp.formulation, cons4[i in R′], sum(x[(i,j)] for j in C ) == sum(x[(j,i)] for j in C))
-    # println(bwtsp.formulation)
+    #@constraint(ecvrp.formulation, cons3[j in C], sum(x[(j,i)] for i in V if i!=j) == 1.0)
+    #@constraint(ecvrp.formulation, cons4[i in R′], sum(x[(i,j)] for j in C ) == sum(x[(j,i)] for j in C))
+    # println(ecvrp.formulation)
 
     # Build the model directed graph G=(V,A)
     function build_graph()
@@ -59,6 +59,7 @@ function build_model(data::DataECVRP)
             # source -> i(black)
             for j in R′
                 arc_id = add_arc!(G, i, j)
+
                 add_arc_var_mapping!(G, arc_id, x[(i,j)])
                 set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
                 set_arc_consumption!(G, arc_id, energy_res_id, ec(data,ed(i,j)))
@@ -66,6 +67,7 @@ function build_model(data::DataECVRP)
                
 
                 arc_id = add_arc!(G, (j!=0) ? j+n-1 : j, i)
+                #arc_id = add_arc!(G,(j,i))
                 add_arc_var_mapping!(G, arc_id, x[(j,i)])
                 set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
                 #set_arc_resource_bounds!(G,arc_id,  energy_res_id, ec(data,ed(i,j)), E_max)
@@ -83,12 +85,14 @@ function build_model(data::DataECVRP)
 
             for j in C
                 if (i < j)
+
+        
                  arc_id = add_arc!(G, i, j)
                  add_arc_var_mapping!(G, arc_id, x[(i,j)])
                  set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
                  set_arc_consumption!(G, arc_id, energy_res_id, ec(data,(i,j)))
 
-        
+
                  arc_id = add_arc!(G, j, i)
                  add_arc_var_mapping!(G, arc_id, x[(j,i)])
                  set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
@@ -101,13 +105,12 @@ function build_model(data::DataECVRP)
 
     G = build_graph()
     add_graph!(ecvrp, G)
-    println(G)
-
+    #println(G)
+  
     set_vertex_packing_sets!(ecvrp, [[(G, i)] for i in C])
-    #set_additional_vertex_elementarity_sets!(bwtsp, [(G,[i]) for i in B])
-
-    define_elementarity_sets_distance_matrix!(ecvrp, G, [[d(data,ed(i, j)) for i in C] for j in C])
-
+    #set_additional_vertex_elementarity_sets!(ecvrp, [(G,[i]) for i in R])
+    define_elementarity_sets_distance_matrix!(ecvrp, G, [[d(data,ed(i, j))  for i in C] for j in C])
+   
     add_capacity_cut_separator!(ecvrp, [ ([(G, i)], d(data,i)) for i in C], Float64(Q))
 
     set_branching_priority!(ecvrp, "x", 1)
