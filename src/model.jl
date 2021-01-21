@@ -1,5 +1,5 @@
 
-#verify if enumeration dont eliminate optimum
+
 function build_model(data::DataECVRP)
 
     E = edges(data) # set of edges of the input graph G′
@@ -39,6 +39,19 @@ function build_model(data::DataECVRP)
         L = 1 
         U = length(C) # max and min number of paths is equal to number of black nodes
         artificial_vertex = [ i for i in n:n+length(R)-1]
+        inviable_edges  = []
+        
+        #better bound
+        for i in C
+
+            if(ec(data,(0,i)) + minimum([ec(data,ed(i,r)) for r in R′]) > E_max - E_min)
+               U = U - 1
+               push!(inviable_edges,(0,i))
+               push!(inviable_edges,(i,0))
+            end
+        end
+
+
         # node ids of G from 0 to |V|
         V= vcat(V,artificial_vertex)
         G = VrpGraph(ecvrp, V, v_source, v_sink, (L, U))
@@ -58,6 +71,7 @@ function build_model(data::DataECVRP)
         for i in C # setting the arcs between source, sink, and black vertices
             # source -> i(black)
             for j in R′
+                if(c(data,ed(i,j))<=E_max-E_min && ! ((i,j) in inviable_edges))
                 arc_id = add_arc!(G, i, j)
 
                 add_arc_var_mapping!(G, arc_id, x[(i,j)])
@@ -65,8 +79,6 @@ function build_model(data::DataECVRP)
                 set_arc_consumption!(G, arc_id, energy_res_id, ec(data,ed(i,j)))
                 # i(black) -> sink
                
-
-                if(ec(data,ed(i,j))<=E_max-E_min)
                  arc_id = add_arc!(G, (j!=0) ? j+n-1 : j, i)
                  #arc_id = add_arc!(G,j,i)
                  add_arc_var_mapping!(G, arc_id, x[(j,i)])
@@ -76,6 +88,8 @@ function build_model(data::DataECVRP)
                  #set_arc_consumption!(G, arc_id, energy_res_id, -E_max)
                 #else
                 #    @constraint(ecvrp.formulation, x[(j,i)] == 0  )
+                else
+                    println("removing inviable edges : $((i,j))")
                 end
             end
         end
@@ -89,17 +103,20 @@ function build_model(data::DataECVRP)
             for j in C
                 if (i < j)
 
-        
-                 arc_id = add_arc!(G, i, j)
-                 add_arc_var_mapping!(G, arc_id, x[(i,j)])
-                 set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
-                 set_arc_consumption!(G, arc_id, energy_res_id, ec(data,(i,j)))
+                    if(ec(data,ed(i,j))<=E_max-E_min)
+                      arc_id = add_arc!(G, i, j)
+                      add_arc_var_mapping!(G, arc_id, x[(i,j)])
+                      set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
+                      set_arc_consumption!(G, arc_id, energy_res_id, ec(data,(i,j)))
 
 
-                 arc_id = add_arc!(G, j, i)
-                 add_arc_var_mapping!(G, arc_id, x[(j,i)])
-                 set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
-                 set_arc_consumption!(G, arc_id, energy_res_id, ec(data,(i,j)))
+                      arc_id = add_arc!(G, j, i)
+                      add_arc_var_mapping!(G, arc_id, x[(j,i)])
+                      set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
+                      set_arc_consumption!(G, arc_id, energy_res_id, ec(data,(i,j)))
+                    else
+                        println("removing inviable edges : $((i,j))")
+                    end
                 end
             end
         end

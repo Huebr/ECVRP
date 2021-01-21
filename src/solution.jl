@@ -11,7 +11,8 @@ function getsolution(data::DataECVRP, optimizer::VrpOptimizer, x, objval, app::D
     R′ = vcat([0],R)
     A = [(i,j) for i in V for j in V if !((i in  R′) & (j in  R′)) & (i!=j)]
     adj_list = [[] for i in 1:dim] 
-    println("Number of vehicles $(get_number_of_positive_paths(optimizer))")
+    n_v = get_number_of_positive_paths(optimizer)
+    println("Number of vehicles $(n_v)")
     #println("---------------x values-----------------------------")
     for a in A
        val = get_value(optimizer, x[a])
@@ -57,6 +58,33 @@ function getsolution(data::DataECVRP, optimizer::VrpOptimizer, x, objval, app::D
 
     !isempty(findall(a->a==false,visited[2+length(data.ChargingStations):end])) && error("Problem trying to recover the route from the x values. "*
                               "At least one customer was not visited or there are subtours in the solution x. $(visited[2+length(data.ChargingStations):end])")
+    #merging routes testing
+    for r in routes
+        if(r[1]!=0)
+            pathid = 1
+           for i in 1:n_v
+               if(get_value(optimizer,x[ed(r[1],r[2])],i)>0.5)
+                  pathid=i
+               end
+           end
+
+           for id in 1:length(routes)
+            if routes[id][1]==0 &&(get_value(optimizer,x[ed(routes[id][1],routes[id][2])],pathid)>0.5)
+                i = 1
+                while (routes[id][i]!=r[1])
+                    i=i+1
+                end
+                #merging routes
+                a = vcat(routes[id][1:i-1],r)
+                a = vcat(a,routes[id][i+1:end])
+                routes[id] = a
+                break
+            end
+           end
+        end
+    end   
+
+    routes = filter(a->a[1]==0,routes)
     if !app["noround"]
         objval = trunc(Int, round(objval))
     end
