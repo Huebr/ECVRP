@@ -38,7 +38,10 @@ function build_model(data::DataECVRP)
         v_source = v_sink = 0
         L = 1 
         U = length(C) # max and min number of paths is equal to number of black nodes
+        #split code comment to use no split mode
         artificial_vertex = [ i for i in n:n+length(R)-1]
+        
+        
         inviable_edges  = []
         
         #better bound
@@ -53,7 +56,10 @@ function build_model(data::DataECVRP)
 
 
         # node ids of G from 0 to |V|
+
+        #split code comment to use no split mode
         V= vcat(V,artificial_vertex)
+        
         G = VrpGraph(ecvrp, V, v_source, v_sink, (L, U))
         # resourves, R = R_M = {1,2} = {cap_res_id, energy_res_id}}
         cap_res_id = add_resource!(G, main=true)
@@ -77,12 +83,17 @@ function build_model(data::DataECVRP)
                 set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
                 set_arc_consumption!(G, arc_id, energy_res_id, ec(data,ed(i,j)))
                 # i(black) -> sink
-               
+                 #split code comment to use nosplit mode
                  arc_id = add_arc!(G, (j!=0) ? j+n-1 : j, i)
-                 #arc_id = add_arc!(G,j,i)
+                 
                  add_arc_var_mapping!(G, arc_id, x[(j,i)])
                  set_arc_consumption!(G, arc_id, cap_res_id, (d(data,i)+d(data,j))/2)
+                 
+                 #split code comment to use no split mode
                  set_arc_consumption!(G, arc_id, energy_res_id, ec(data,ed(i,j)))
+                 
+                 #nosplit code uncomment to use nosplit mode
+                 #arc_id = add_arc!(G,j,i)
                  #set_arc_resource_bounds!(G,arc_id,  energy_res_id, ec(data,ed(i,j)), E_max)
                  #set_arc_consumption!(G, arc_id, energy_res_id, -E_max)
                 else
@@ -90,11 +101,13 @@ function build_model(data::DataECVRP)
                 end
             end
         end
+        #split code comment to use no split mode
         for j in R
             arc_id = add_arc!(G, j, j+n-1)
             set_arc_consumption!(G, arc_id, cap_res_id, 0.0)
             set_arc_consumption!(G, arc_id, energy_res_id, -E_max)
         end
+        
         for i in C # setting the arcs between clients.
 
             for j in C
