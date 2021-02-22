@@ -28,7 +28,7 @@ function build_model(data::DataECVRP)
     
     @objective(ecvrp.formulation, Min, sum(c(data, ed(e[1],e[2])) * x[e] for e in Ec))
     @constraint(ecvrp.formulation, cons2[j in C], sum(x[(i,j)] for i in V if i != j) == 1.0)
-    #@constraint(ecvrp.formulation, cons3[j in C], sum(x[(j,i)] for i in V if i!=j) == 1.0)
+    #@constraint(ecvrp.formulation, cons3, sum(c(data,ed(i,j))*x[ed(i,j)] for i in C for j in V if i!=j) <= sum(E_max*x[ed(i,j)] for i in R′ for j in C))
     #@constraint(ecvrp.formulation, cons4[j in R], sum(x[(i,j)] for i in C)<=1.0  )
     # println(ecvrp.formulation)
 
@@ -55,7 +55,7 @@ function build_model(data::DataECVRP)
         # node ids of G from 0 to |V|
         V= vcat(V,artificial_vertex)
         G = VrpGraph(ecvrp, V, v_source, v_sink, (L, U))
-        # resourves, R = R_M = {1,2} = {cap_res_id, dist_res_id}}
+        # resourves, R = R_M = {1,2} = {cap_res_id, energy_res_id}}
         cap_res_id = add_resource!(G, main=true)
         energy_res_id = add_resource!(G, main=false)
         for i in V
@@ -65,7 +65,6 @@ function build_model(data::DataECVRP)
             l_i, u_i = E_min, Float64(max_battery)
             set_resource_bounds!(G, i,  energy_res_id, l_i, u_i)
         end
-        #TODO peharps write preprocessing minimize number of invalid arcs
         
         # Build set of arcs A from E′ (two arcs for each edge (i,j))
         for i in C # setting the arcs between source, sink, and black vertices
@@ -86,8 +85,6 @@ function build_model(data::DataECVRP)
                  set_arc_consumption!(G, arc_id, energy_res_id, ec(data,ed(i,j)))
                  #set_arc_resource_bounds!(G,arc_id,  energy_res_id, ec(data,ed(i,j)), E_max)
                  #set_arc_consumption!(G, arc_id, energy_res_id, -E_max)
-                #else
-                #    @constraint(ecvrp.formulation, x[(j,i)] == 0  )
                 else
                     println("removing inviable edges : $((i,j))")
                 end
@@ -95,7 +92,7 @@ function build_model(data::DataECVRP)
         end
         for j in R
             arc_id = add_arc!(G, j, j+n-1)
-            set_arc_consumption!(G, arc_id, cap_res_id, 0)
+            set_arc_consumption!(G, arc_id, cap_res_id, 0.0)
             set_arc_consumption!(G, arc_id, energy_res_id, -E_max)
         end
         for i in C # setting the arcs between clients.
@@ -129,14 +126,12 @@ function build_model(data::DataECVRP)
     
     #M = vcat(R,C)
 
-    set_vertex_packing_sets!(ecvrp, [[(G, i)] for i in C])
+    set_vertex_packing_sets!(ecvrp, [[(G, i)] for i in 1:n-1])
     #set_additional_vertex_elementarity_sets!(ecvrp, [(G,[i]) for i in R])
     #define_elementarity_sets_distance_matrix!(ecvrp, G, [[( !(issubset([i,j],R)) ? d(data,ed(i, j)) : 1e7 )  for i in M] for j in M])
     define_elementarity_sets_distance_matrix!(ecvrp, G, [[d(data,ed(i, j))  for i in C] for j in C])
 
     add_capacity_cut_separator!(ecvrp, [ ([(G, i)], d(data,i)) for i in C], Float64(Q))
-    
-
     set_branching_priority!(ecvrp, "x", 1)
 
 

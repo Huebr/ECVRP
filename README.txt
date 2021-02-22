@@ -27,6 +27,6 @@ docker run --rm -v /ABSOLUTE_PATH_TO_ECVRP_APP:/ECVRP -v /ABSOLUTE_PATH_TO_OUTPU
 ./VRPSolver --help
 
 # Running a batch of instances:
-./VRPSolver -b A.batch
+./VRPSolver -b testes10.batch
 
 # Files with the extension .sh contain the call of VRPSolver for all instances individually.

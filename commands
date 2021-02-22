@@ -2,5 +2,6 @@ include("ECVRP/src/run.jl")
 args = ["\ECVRP\data\ecvrp_instances\10customers\5RS\c101C10.txt", "-C", "10", "-R", "5","-M","1.0","-r", "-t", "ECVRP/tex/c101C10.tex"]
 args = ["ECVRP\data\ecvrp_instances\10customers\4RS\r201C10.txt", "-C", "10", "-R", "4","-M","1.0","-r", "-t", "ECVRP/tex/r201C10.tex"]
 args = ["ECVRP/data/ecvrp_instances/20customers/rc103C20.txt", "-C", "20", "-R", "21","-M","1.0","-r", "-t", "ECVRP/tex/rc103C20.tex"]
+args = ["ECVRP/data/ecvrp_instances/10customers/r102C10.txt", "-C", "10", "-R", "4", "-M", "1.0", "-r", "-o", "ECVRP/out/r102C10.sol", "-t", "ECVRP/tex/r102C10.tex"]
 
 main(args)

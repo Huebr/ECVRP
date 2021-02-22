@@ -119,6 +119,7 @@ function readECVRPData(app::Dict{String,Any})
     return data
 end
 
+
 edges(data::DataECVRP) = data.G′.E # return set of edges
 c(data,e) = data.G′.cost[e] # cost of the edge e
 ec(data,e) = data.G′.energy_cost[e]
