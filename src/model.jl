@@ -126,7 +126,7 @@ function build_model(data::DataECVRP)
     
     #M = vcat(R,C)
 
-    set_vertex_packing_sets!(ecvrp, [[(G, i)] for i in 1:n-1])
+    set_vertex_packing_sets!(ecvrp, [[(G, i)] for i in C])
     #set_additional_vertex_elementarity_sets!(ecvrp, [(G,[i]) for i in R])
     #define_elementarity_sets_distance_matrix!(ecvrp, G, [[( !(issubset([i,j],R)) ? d(data,ed(i, j)) : 1e7 )  for i in M] for j in M])
     define_elementarity_sets_distance_matrix!(ecvrp, G, [[d(data,ed(i, j))  for i in C] for j in C])

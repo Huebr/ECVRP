@@ -1,5 +1,5 @@
 using VrpSolver, JuMP, ArgParse
-# using CPLEX
+ using CPLEX
 include("data.jl")
 include("model.jl")
 include("solution.jl")
@@ -48,6 +48,9 @@ function parse_commandline(args_array::Array{String,1}, appfolder::String)
    return parse_args(args_array, s)
 end
 
+
+
+
 function run_ecvrp(app::Dict{String,Any})
     println("Application parameters:")
     for (arg, val) in app
@@ -69,16 +72,16 @@ function run_ecvrp(app::Dict{String,Any})
     if !app["nosolve"]
         (model, x) = build_model(data)
 
-        # enum_paths, complete_form = get_complete_formulation(model, app["cfg"])
-        # complete_form.solver = CplexSolver() # set MIP solver
-        # print_enum_paths(enum_paths)
-        # println(complete_form)
-        # solve(complete_form)
-        # println("Objective value: $(getobjectivevalue(complete_form))\n")
+         #enum_paths, complete_form = get_complete_formulation(model, app["cfg"])
+        #complete_form.solver = CplexSolver() # set MIP solver
+        #print_enum_paths(enum_paths)
+        #println(complete_form)
+        #solve(complete_form,relaxation = true)
+        #println("Objective value: $(getobjectivevalue(complete_form))\n")
         
-        optimizer = VrpOptimizer(model, app["cfg"], instance_name)
+        optimizer = VrpOptimizer(model,app["cfg"], instance_name)
+        
         set_cutoff!(optimizer, app["ub"])
-        
         (status, solution_found) = optimize!(optimizer)
         if solution_found
             sol = getsolution(data, optimizer, x, get_objective_value(optimizer), app)

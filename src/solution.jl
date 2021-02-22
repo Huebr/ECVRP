@@ -16,6 +16,7 @@ function getsolution(data::DataECVRP, optimizer::VrpOptimizer, x, objval, app::D
     #println("---------------x values-----------------------------")
     for a in A
        val = get_value(optimizer, x[a])
+       #println((a,val))
        if val > 0.5
           push!(adj_list[a[1]+1], a[2])
        end
@@ -125,7 +126,7 @@ function checksolution(data::DataECVRP, solution)
             #cummulative = (prev in R′) ?  ec(data,ed(j,prev)) : cummulative + ec(data,ed(j,prev))
             #println("$(cummulative) -> $(j)->")
             battery_level= (prev in R′) ? E_max - ec(data,ed(j,prev)) : battery_level - ec(data,ed(prev,j))
-      #      println("$(battery_level)")
+            #println("$(battery_level)")
             (battery_level < E_min) && error("Route is violating the limit of energy. The battery level is not bounded $(battery_level) in [$E_min,$E_max]")
             sum_demand += d(data,  j)
             (sum_demand > Q) && error("Route #$i is violating the capacity constraint. Sum of the demands is $(sum_demand) and Q is $Q")
